@@ -8,7 +8,10 @@
 
 #' @docType package
 #' @name bw 
-#' @import expm, pracma, MASS, Matrix
+
+# #' @import expm pracma MASS Matrix
+
+#' @import pracma MASS
 #' @examples
 #' library(tictoc)
 #' #input parameters genRanGauss()

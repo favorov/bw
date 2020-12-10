@@ -1,5 +1,6 @@
 
 #---------- Compute Wasserstein barycenter -----
+#' @export
 Wbarycenter <- function(population, weights=NULL, err=1e-6) {
   ##Compute the Wasserstein barycenter of a population GPs.
   #population is a list with m Gaussian distributions given by list-type 
@@ -54,6 +55,7 @@ Wbarycenter <- function(population, weights=NULL, err=1e-6) {
   return(mean.gp)
 }
 
+#' @export
 Wbarycenter_2 <- function(population, weights=NULL, err=1e-6) {
   ##Compute the Wasserstein barycenter of a population GPs.
   #population is a list with m Gaussian distributions given by list-type 
@@ -132,6 +134,7 @@ W <- function(f1,f2) {
   return(d)
 }
 
+#' @export
 BW <- function(K1, K2) {
   #Compute the Bures-Wasserstein distance between covariance matrices
   return(sqrt(abs(Tr(K1) + Tr(K2) - 2 * Tr(Sqrtm(Sqrtm(K1) %*% K2 %*% Sqrtm(K1))))))

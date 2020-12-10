@@ -2,7 +2,7 @@ Package: bw
 Title: Bures-Wasserstein (BW) Pairwise Distance, Barycenter, Variance
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Alexandra",
+    c(person(given = "Alexandra",
            family = "Suvorikova",
            role = c("aut"),
            email = "suvorikova@wias-berlin.de",
@@ -14,7 +14,9 @@ Authors@R:
            email = "favorov@sensi.org",
            comment = c(ORCID = "0000-0003-2595-1091")
 					 )
+		)
 Description: Calculates The Bures-Wasserstein (BW) Pairwise Distance, Find Barycenter According to BW and Estimates Variance using bootstrap procedure
+Suggests: tictoc
 License: `use_mit_license()`
 Encoding: UTF-8
 LazyData: true
