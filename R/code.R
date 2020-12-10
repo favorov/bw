@@ -139,6 +139,7 @@ BW <- function(K1, K2) {
   return(sqrt(abs(Tr(K1) + Tr(K2) - 2 * Tr(Sqrtm(Sqrtm(K1) %*% K2 %*% Sqrtm(K1))))))
 } 
 
+#' @export
 bootstrap <- function(population, alpha, M) {
   #population is an observed sample
   # alpha is a confidence level, by default set to 5%
