@@ -14,6 +14,7 @@
 #' @import pracma MASS
 #' @examples
 #' library(tictoc)
+#' library(bw)
 #' #input parameters genRanGauss()
 #' ## d - dim of the vector
 ## n - sample size

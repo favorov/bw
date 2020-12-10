@@ -14,6 +14,7 @@ REVA.user.distance.Geneset does something
 
 \examples{
 library(tictoc)
+library(bw)
 #input parameters genRanGauss()
 ## d - dim of the vector
 d <- 5

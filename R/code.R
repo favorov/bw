@@ -1,6 +1,5 @@
-
-#---------- Compute Wasserstein barycenter -----
 #' @export
+#---------- Compute Wasserstein barycenter -----
 Wbarycenter <- function(population, weights=NULL, err=1e-6) {
   ##Compute the Wasserstein barycenter of a population GPs.
   #population is a list with m Gaussian distributions given by list-type 
@@ -161,6 +160,53 @@ bootstrap <- function(population, alpha, M) {
  return(quantile(stat, 1-alpha))
 }
 
+#' @export
+genRanGauss <- function(d, k) {
+  #generats a test population of Gaussian distributions
+  #n is the dimensionality of GPs
+  #k is the number of GPs
+  out <- list()
+  for (i in 1 : k) {
+    A        <- matrix(runif(d^2) + 100, ncol = d) 
+    sigma    <- crossprod(A) # A' A
+    E        <- eigen(sigma, symmetric = TRUE)
+    values   <- abs(rnorm(d, 0, 4))^2
+    #for (j in 1 : d) {
+    #    values[j] <- values[j] + j
+    #}
+    Sigma    <- t(E$vectors) %*% diag(abs(values)) %*% E$vectors #diag(rnorm(n, 20, 3)) #
+    #out[[i]] <- list('mean' = rnorm(d), 'covariance' = Sigma)
+    out[[i]] <- list('mean' = rep(0, d), 'covariance' = Sigma)
+  }
+  return(out)
+}
+
+# Example: population <- genRanGauss(10, 5)
+
+#' @export
+GenONbasis <- function(d) {
+  #Generate orthonormal basis in space of d \tims d symmetric matrices
+  out     <- list()
+  counter <- 0
+  for (i in 1 : d) {
+    ei    <- rep(0, d)
+    ei[i] <- 1
+    for (j in 1 : i) {
+      ej      <- rep(0, d)
+      ej[j]   <- 1
+      counter <- counter + 1
+      
+      if (i == j) {
+        out[[counter]] <- list('count' = counter, 'u' = ei %o% ei)
+      } else {
+        out[[counter]] <- list('count' = counter, 'u' = (ei %o% ej + ej %o% ei) / sqrt(2))
+      }
+    }
+  }
+  return(out)
+}
+
+
 #---------- Auxiliary functions -----
 Fpm <- function(K, covs, weights) {
   #step in the solution of fixed-point equation
@@ -237,49 +283,5 @@ GetOTmap <- function(Q, S) {
   return(OT)
 }
 
-genRanGauss <- function(d, k) {
-  #generats a test population of Gaussian distributions
-  #n is the dimensionality of GPs
-  #k is the number of GPs
-  out <- list()
-  for (i in 1 : k) {
-    A        <- matrix(runif(d^2) + 100, ncol = d) 
-    sigma    <- crossprod(A) # A' A
-    E        <- eigen(sigma, symmetric = TRUE)
-    values   <- abs(rnorm(d, 0, 4))^2
-    #for (j in 1 : d) {
-    #    values[j] <- values[j] + j
-    #}
-    Sigma    <- t(E$vectors) %*% diag(abs(values)) %*% E$vectors #diag(rnorm(n, 20, 3)) #
-    #out[[i]] <- list('mean' = rnorm(d), 'covariance' = Sigma)
-    out[[i]] <- list('mean' = rep(0, d), 'covariance' = Sigma)
-  }
-  return(out)
-}
-
-# Example: population <- genRanGauss(10, 5)
-
-
-GenONbasis <- function(d) {
-  #Generate orthonormal basis in space of d \tims d symmetric matrices
-  out     <- list()
-  counter <- 0
-  for (i in 1 : d) {
-    ei    <- rep(0, d)
-    ei[i] <- 1
-    for (j in 1 : i) {
-      ej      <- rep(0, d)
-      ej[j]   <- 1
-      counter <- counter + 1
-      
-      if (i == j) {
-        out[[counter]] <- list('count' = counter, 'u' = ei %o% ei)
-      } else {
-        out[[counter]] <- list('count' = counter, 'u' = (ei %o% ej + ej %o% ei) / sqrt(2))
-      }
-    }
-  }
-  return(out)
-}
 
 
