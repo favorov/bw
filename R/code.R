@@ -1,7 +1,4 @@
-library(expm)
-library(pracma)
-library(MASS)
-library(Matrix)
+
 #---------- Compute Wasserstein barycenter -----
 Wbarycenter <- function(population, weights=NULL, err=1e-6) {
   ##Compute the Wasserstein barycenter of a population GPs.

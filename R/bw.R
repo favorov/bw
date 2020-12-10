@@ -1,0 +1,39 @@
+#' bw:   
+#' Calculates The Bures-Wasserstein (BW) Pairwise Distance, Find Barycenter According to BW and Estimates Variance using bootstrap procedure
+#' 
+#' @section bw functions:
+#'	REVA.test calculates the p-value corresponding to the null
+#'	REVA.user.distance calculate distance as Kendall tau and calculate the p-value	
+#'	REVA.user.distance.Geneset does something
+
+#' @docType package
+#' @name bw 
+#' @import expm, pracma, MASS, Matrix
+#' @examples
+#' library(tictoc)
+#' #input parameters genRanGauss()
+#' ## d - dim of the vector
+## n - sample size
+#' d <- 5
+#' n <- 100
+#' population <- genRanGauss(d, n)
+#' 
+#' 
+#' #input parameters Wbarycenter()
+#' ## population is a list of lists, eqch sub-list contains:
+#' ###1) a vector of means. should be set to zero
+#' ###2) a matrix. should be non-negatively definite
+#' 
+#' ## vector of weights, by default uniform
+#' tic("Computing barycenter")
+#' bw <- Wbarycenter(population)
+#' toc()
+#' 
+#' #compute confidence interval given population
+#' M     <- 1000 #num of iterations
+#' alpha <- .05  #conf level 5%
+#' tic("Computing confidence interval")
+#' z = bootstrap(population, alpha = alpha, M = M)
+#' toc()
+#' 
+NULL
