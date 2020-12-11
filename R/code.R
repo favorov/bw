@@ -186,7 +186,7 @@ genRanGauss <- function(d, k) {
 
 #' @export
 GenONbasis <- function(d) {
-  #Generate orthonormal basis in space of d \tims d symmetric matrices
+  #Generate orthonormal basis in space of d x d symmetric matrices
   out     <- list()
   counter <- 0
   for (i in 1 : d) {
