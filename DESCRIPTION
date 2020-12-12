@@ -9,12 +9,6 @@ Authors@R:
            email = "akroshnin@hse.ru",
            comment = c(ORCID = "0000-0003-3321-6409")
 					 ),
-    person(given = "Alexandra",
-           family = "Galitsyna",
-           role = c("cre","aut"),
-           email = "agalitzina@gmail.com",
-           comment = c(ORCID = "0000-0001-8969-5694")
-					 ),
     person(given = "Alexander",
            family = "Favorov",
            role = c("cre","aut"),
